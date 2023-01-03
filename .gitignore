@@ -150,3 +150,30 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+/.idea/.gitignore
+/Scripts/activate
+/Scripts/activate.bat
+/Scripts/activate.fish
+/Scripts/activate.nu
+/Scripts/activate.ps1
+/Scripts/activate_this.py
+/Scripts/deactivate.bat
+/Scripts/deactivate.nu
+/.idea/misc.xml
+/.idea/modules.xml
+/Scripts/pip.exe
+/Scripts/pip3.9.exe
+/Scripts/pip3.exe
+/Scripts/pip-3.9.exe
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/Scripts/pydoc.bat
+/Scripts/python.exe
+/Scripts/pythonw.exe
+/pyvenv.cfg
+/.idea/SRM_IT.iml
+/.idea/vcs.xml
+/Scripts/wheel.exe
+/Scripts/wheel3.9.exe
+/Scripts/wheel3.exe
+/Scripts/wheel-3.9.exe
