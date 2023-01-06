@@ -1,13 +1,11 @@
 from PyQt5 import QtWidgets
-from forms.autoresationForm import Ui_autoresationForm
+from forms.autoresationForm import Ui_autoresationForm, Ui
+import sys
 
 def main():
-    import sys
     app = QtWidgets.QApplication(sys.argv)
-    autoresationForm = QtWidgets.QDialog()
-    ui = Ui_autoresationForm()
-    ui.setupUi(autoresationForm)
-    autoresationForm.show()
+    mw = Ui()
+    mw.show()
     sys.exit(app.exec_())
 
 
