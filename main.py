@@ -1,11 +1,11 @@
 from PyQt5 import QtWidgets
-from forms.autoresationForm import Ui_autoresationForm, Ui
+from forms.autoresationForm import Ui_autoresationForm, UiA
 import sys
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    mw = Ui()
-    mw.show()
+    mwa = UiA()
+    mwa.show()
     sys.exit(app.exec_())
 
 
