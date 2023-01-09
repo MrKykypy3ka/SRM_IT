@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Техник</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../computer.ico</normaloff>../computer.ico</iconset>
+  </property>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>

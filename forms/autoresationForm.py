@@ -7,6 +7,9 @@ class Ui_autoresationForm(object):
     def setupUi(self, autoresationForm):
         autoresationForm.setObjectName("autoresationForm")
         autoresationForm.resize(200, 160)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("forms\\../computer.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        autoresationForm.setWindowIcon(icon)
         self.singinButton = QtWidgets.QPushButton(autoresationForm)
         self.singinButton.setGeometry(QtCore.QRect(40, 120, 111, 31))
         self.singinButton.setObjectName("singinButton")
@@ -54,10 +57,12 @@ class UiA(QtWidgets.QDialog, FormA):
         self.uia = Ui_autoresationForm()
         self.uia.setupUi(self)
         self.uia.singinButton.clicked.connect(self.singinButtonPresed)
-        self.dialog = UiM(self)
+        self.mainForm = UiM(self)
 
     def singinButtonPresed(self):
-        self.dialog.show()
+        self.close()
+        self.mainForm.show()
+
 
 def autoresation(login, password):
     pass
