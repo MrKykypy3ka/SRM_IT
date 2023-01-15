@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from PyQt5.QtWidgets import QMessageBox
 from forms.mainForm import Ui_mainForm
 from forms.UiU import UiU
 from forms.UiD import UiD
@@ -16,6 +17,8 @@ class UiM(QtWidgets.QDialog, FormM):
         self.uim.editButton.clicked.connect(self.editButtonPresed)
         self.uim.usersButton.clicked.connect(self.userButtonPresed)
         self.uim.vievButton.clicked.connect(self.viewButtonPresed)
+        self.uim.infoButton.clicked.connect(self.infoButtonPresed)
+        self.uim.blindButton.clicked.connect(self.blitButtonPresed)
         self.addForm = UiD(self)
         self.userForm = UiU(self)
         self.viewForm = UiV(self)
@@ -39,3 +42,14 @@ class UiM(QtWidgets.QDialog, FormM):
         self.setEnabled(False)
         self.viewForm.show()
         self.viewForm.setEnabled(True)
+
+    def infoButtonPresed(self):
+        file = open("info.txt", "r", encoding="utf-8")
+        s = file.read()
+        defaultBtn = QMessageBox.NoButton
+        result = QMessageBox.question(self, "Руководство пользователя", s, QMessageBox.Close, defaultBtn)
+        file.close()
+
+    def blitButtonPresed(self):
+        defaultBtn = QMessageBox.NoButton
+        result = QMessageBox.question(self, "TODO", "Режим для слабовидящих", QMessageBox.Close, defaultBtn)
