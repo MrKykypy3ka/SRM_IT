@@ -4,9 +4,12 @@ from forms.mainForm import Ui_mainForm
 from forms.UiU import UiU
 from forms.UiD import UiD
 from forms.UiV import UiV
+import sqlite3
 
 
 FormM, WindowM = uic.loadUiType("forms/mainForm.ui")
+db = sqlite3.connect('identifier.sqlite')
+sql = db.cursor()
 
 class UiM(QtWidgets.QDialog, FormM):
     def __init__(self, parent=None):
@@ -22,6 +25,7 @@ class UiM(QtWidgets.QDialog, FormM):
         self.addForm = UiD(self)
         self.userForm = UiU(self)
         self.viewForm = UiV(self)
+        self.loadForm()
 
     def addButtonPresed(self):
         self.setEnabled(False)
@@ -53,3 +57,7 @@ class UiM(QtWidgets.QDialog, FormM):
     def blitButtonPresed(self):
         defaultBtn = QMessageBox.NoButton
         result = QMessageBox.question(self, "TODO", "Режим для слабовидящих", QMessageBox.Close, defaultBtn)
+
+    def loadForm(self):
+        for value in sql.execute("SELECT notes FROM orders"):
+            self.uim.listWidget.addItems(value)
