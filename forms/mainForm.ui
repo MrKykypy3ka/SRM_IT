@@ -26,8 +26,11 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/icons/add.png);</string>
+   </property>
    <property name="text">
-    <string>ADD</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="editButton">
@@ -39,8 +42,12 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/icons/edit.png);
+</string>
+   </property>
    <property name="text">
-    <string>EDIT</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="deleteButton">
@@ -52,8 +59,11 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/icons/del.png);</string>
+   </property>
    <property name="text">
-    <string>DELETE</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="vievButton">
@@ -65,8 +75,11 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/icons/view.png);</string>
+   </property>
    <property name="text">
-    <string>VIEV</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="usersButton">
@@ -78,9 +91,11 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/icons/user.png);</string>
+   </property>
    <property name="text">
-    <string>ADD
-USER</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -149,27 +164,33 @@ USER</string>
   <widget class="QPushButton" name="infoButton">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>310</y>
-     <width>31</width>
-     <height>31</height>
+     <x>540</x>
+     <y>300</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/icons/info.png);</string>
+   </property>
    <property name="text">
-    <string>info</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="blindButton">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>310</y>
-     <width>31</width>
-     <height>31</height>
+     <x>490</x>
+     <y>300</y>
+     <width>41</width>
+     <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/icons/low.png);</string>
+   </property>
    <property name="text">
-    <string>blind</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -202,6 +223,8 @@ USER</string>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../image/image.qrc"/>
+ </resources>
  <connections/>
 </ui>

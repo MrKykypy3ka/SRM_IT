@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 
-FormV, WindowV = uic.loadUiType("forms/viewForm.ui")
+
 class Ui_viewForm(object):
     def setupUi(self, viewForm):
         viewForm.setObjectName("viewForm")
@@ -123,8 +123,3 @@ class Ui_viewForm(object):
         self.notes.setText(_translate("viewForm", "TextLabel"))
 
 
-class UiV(QtWidgets.QDialog, FormV):
-    def __init__(self, parent=None):
-        super(UiV, self).__init__(parent)
-        self.uiv = Ui_viewForm()
-        self.uiv.setupUi(self)

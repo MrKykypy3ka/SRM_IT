@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 
 
-FormD, WindowD = uic.loadUiType("forms/addForm.ui")
 class Ui_addForm(object):
     def setupUi(self, addForm):
         addForm.setObjectName("addForm")
@@ -115,8 +114,3 @@ class Ui_addForm(object):
         self.label_9.setText(_translate("addForm", "Название"))
 
 
-class UiD(QtWidgets.QDialog, FormD):
-    def __init__(self, parent=None):
-        super(UiD, self).__init__(parent)
-        self.uid = Ui_addForm()
-        self.uid.setupUi(self)

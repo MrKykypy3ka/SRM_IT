@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets,  uic
 
 
-FormU, WindowU = uic.loadUiType("forms/userForm.ui")
 class Ui_usersForm(object):
     def setupUi(self, usersForm):
         usersForm.setObjectName("usersForm")
@@ -101,9 +100,3 @@ class Ui_usersForm(object):
         self.label_5.setText(_translate("usersForm", "Пароль"))
         self.label_9.setText(_translate("usersForm", "Фамилия"))
         self.label.setText(_translate("usersForm", "Имя"))
-
-class UiU(QtWidgets.QDialog, FormU):
-    def __init__(self, parent=None):
-        super(UiU, self).__init__(parent)
-        self.uiu = Ui_usersForm()
-        self.uiu.setupUi(self)

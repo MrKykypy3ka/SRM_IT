@@ -1,8 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-from forms.mainForm import Ui_mainForm, UiM
 import sys
 
-FormA, WindowA = uic.loadUiType("forms/autoresationForm.ui")
+
 class Ui_autoresationForm(object):
     def setupUi(self, autoresationForm):
         autoresationForm.setObjectName("autoresationForm")
@@ -51,21 +50,3 @@ class Ui_autoresationForm(object):
         self.label.setText(_translate("autoresationForm", "Логин"))
         self.label_2.setText(_translate("autoresationForm", "Пароль"))
 
-class UiA(QtWidgets.QDialog, FormA):
-    def __init__(self, parent=None):
-        super(UiA, self).__init__(parent)
-        self.uia = Ui_autoresationForm()
-        self.uia.setupUi(self)
-        self.uia.singinButton.clicked.connect(self.singinButtonPresed)
-        self.mainForm = UiM(self)
-
-    def singinButtonPresed(self):
-        self.close()
-        self.mainForm.show()
-
-
-def autoresation(login, password):
-    pass
-
-def main():
-    pass

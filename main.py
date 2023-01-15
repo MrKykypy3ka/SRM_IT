@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
-from forms.autoresationForm import Ui_autoresationForm, UiA
+from forms.autoresationForm import Ui_autoresationForm
+from forms.UiA import UiA
 import sys
 
 def main():
