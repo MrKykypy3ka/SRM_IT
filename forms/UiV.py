@@ -7,3 +7,7 @@ class UiV(QtWidgets.QDialog, FormV):
         super(UiV, self).__init__(parent)
         self.uiv = Ui_viewForm()
         self.uiv.setupUi(self)
+
+    def closeEvent(self, event):
+        print("view")
+        event.accept()

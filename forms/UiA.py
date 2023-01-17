@@ -6,7 +6,7 @@ import sqlite3
 
 FormA, WindowA = uic.loadUiType("forms/autoresationForm.ui")
 db = sqlite3.connect('identifier.sqlite')
-sql = db.cursor( )
+sql = db.cursor()
 
 def autoresation(login, password):
     for value in sql.execute("SELECT login, password FROM masters"):
@@ -26,6 +26,6 @@ class UiA(QtWidgets.QDialog, FormA):
         self.mainForm = UiM(self)
 
     def singinButtonPresed(self):
-        if autoresation(self.uia.inputLogin.text(), self.uia.inputPassword.text()):
-            self.close()
-            self.mainForm.show()
+        #if autoresation(self.uia.inputLogin.text(), self.uia.inputPassword.text()):
+        self.close()
+        self.mainForm.show()

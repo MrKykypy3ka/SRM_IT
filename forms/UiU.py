@@ -8,3 +8,7 @@ class UiU(QtWidgets.QDialog, FormU):
         super(UiU, self).__init__(parent)
         self.uiu = Ui_usersForm()
         self.uiu.setupUi(self)
+
+    def closeEvent(self, event):
+        print("user")
+        event.accept()

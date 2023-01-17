@@ -31,21 +31,29 @@ class UiM(QtWidgets.QDialog, FormM):
         self.setEnabled(False)
         self.addForm.show()
         self.addForm.setEnabled(True)
+        if not self.addForm.exec_():
+            self.setEnabled(True)
 
     def editButtonPresed(self):
         self.setEnabled(False)
         self.addForm.show()
         self.addForm.setEnabled(True)
+        if not self.addForm.exec_():
+            self.setEnabled(True)
 
     def userButtonPresed(self):
         self.setEnabled(False)
         self.userForm.show()
         self.userForm.setEnabled(True)
+        if not self.userForm.exec_():
+            self.setEnabled(True)
 
     def viewButtonPresed(self):
         self.setEnabled(False)
         self.viewForm.show()
         self.viewForm.setEnabled(True)
+        if not self.viewForm.exec_():
+            self.setEnabled(True)
 
     def infoButtonPresed(self):
         file = open("info.txt", "r", encoding="utf-8")
