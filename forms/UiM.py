@@ -11,6 +11,25 @@ FormM, WindowM = uic.loadUiType("forms/mainForm.ui")
 db = sqlite3.connect('identifier.sqlite')
 sql = db.cursor()
 
+class MouseTracker(QtCore.QObject):
+    positionChanged = QtCore.pyqtSignal(QtCore.QPoint)
+
+    def __init__(self, widget):
+        super().__init__(widget)
+        self._widget = widget
+        self.widget.setMouseTracking(True)
+        self.widget.installEventFilter(self)
+
+    @property
+    def widget(self):
+        return self._widget
+
+    def eventFilter(self, o, e):
+        if o is self.widget and e.type() == QtCore.QEvent.MouseMove:
+            self.positionChanged.emit(e.pos())
+        return super().eventFilter(o, e)
+
+
 class UiM(QtWidgets.QDialog, FormM):
     def __init__(self, parent=None):
         super(UiM, self).__init__(parent)
@@ -25,6 +44,20 @@ class UiM(QtWidgets.QDialog, FormM):
         self.addForm = UiD(self)
         self.userForm = UiU(self)
         self.viewForm = UiV(self)
+        self.trackerAdd = MouseTracker(self.uim.addButton)
+        self.trackerAdd.positionChanged.connect(self.on_positionChangedAdd)
+        self.trackerEdit = MouseTracker(self.uim.editButton)
+        self.trackerEdit.positionChanged.connect(self.on_positionChangedEdit)
+        self.trackerView = MouseTracker(self.uim.vievButton)
+        self.trackerView.positionChanged.connect(self.on_positionChangedView)
+        self.trackerDel = MouseTracker(self.uim.deleteButton)
+        self.trackerDel.positionChanged.connect(self.on_positionChangedDel)
+        self.trackerUser = MouseTracker(self.uim.usersButton)
+        self.trackerUser.positionChanged.connect(self.on_positionChangedUser)
+        self.trackerInfo = MouseTracker(self.uim.infoButton)
+        self.trackerInfo.positionChanged.connect(self.on_positionChangedInfo)
+        self.trackerLow = MouseTracker(self.uim.blindButton)
+        self.trackerLow.positionChanged.connect(self.on_positionChangedLow)
         self.loadForm()
 
     def addButtonPresed(self):
@@ -69,3 +102,31 @@ class UiM(QtWidgets.QDialog, FormM):
     def loadForm(self):
         for value in sql.execute("SELECT notes FROM orders"):
             self.uim.listWidget.addItems(value)
+
+    @QtCore.pyqtSlot(QtCore.QPoint)
+    def on_positionChangedAdd(self, pos):
+        self.uim.label_2.setText("Добавить запись")
+
+    @QtCore.pyqtSlot(QtCore.QPoint)
+    def on_positionChangedEdit(self, pos):
+        self.uim.label_2.setText("Редактирвоать запить")
+
+    @QtCore.pyqtSlot(QtCore.QPoint)
+    def on_positionChangedDel(self, pos):
+        self.uim.label_2.setText("Удалить запить")
+
+    @QtCore.pyqtSlot(QtCore.QPoint)
+    def on_positionChangedView(self, pos):
+        self.uim.label_2.setText("Просмотреть запись")
+
+    @QtCore.pyqtSlot(QtCore.QPoint)
+    def on_positionChangedUser(self, pos):
+        self.uim.label_2.setText("Добавить пользователя")
+
+    @QtCore.pyqtSlot(QtCore.QPoint)
+    def on_positionChangedInfo(self, pos):
+        self.uim.label_2.setText("Руководство пользователя")
+
+    @QtCore.pyqtSlot(QtCore.QPoint)
+    def on_positionChangedLow(self, pos):
+        self.uim.label_2.setText("Режим для слаюовидящих")

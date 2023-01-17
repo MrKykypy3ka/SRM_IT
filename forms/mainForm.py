@@ -25,8 +25,7 @@ class Ui_mainForm(object):
         self.addButton.setObjectName("addButton")
         self.editButton = QtWidgets.QPushButton(mainForm)
         self.editButton.setGeometry(QtCore.QRect(70, 10, 51, 51))
-        self.editButton.setStyleSheet("background-image: url(:/icons/edit.png);\n"
-"")
+        self.editButton.setStyleSheet("background-image: url(:/icons/edit.png);\n")
         self.editButton.setText("")
         self.editButton.setObjectName("editButton")
         self.deleteButton = QtWidgets.QPushButton(mainForm)
@@ -85,7 +84,7 @@ class Ui_mainForm(object):
         _translate = QtCore.QCoreApplication.translate
         mainForm.setWindowTitle(_translate("mainForm", "Техник"))
         self.label.setText(_translate("mainForm", "User"))
-        self.label_2.setText(_translate("mainForm", "tips"))
+        self.label_2.setText(_translate("mainForm", ""))
         self.label_3.setText(_translate("mainForm", "Photo"))
 import image_rc
 
