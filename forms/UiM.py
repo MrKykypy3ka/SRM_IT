@@ -11,6 +11,7 @@ FormM, WindowM = uic.loadUiType("forms/mainForm.ui")
 db = sqlite3.connect('identifier.sqlite')
 sql = db.cursor()
 
+
 class MouseTracker(QtCore.QObject):
     positionChanged = QtCore.pyqtSignal(QtCore.QPoint)
 
@@ -130,3 +131,6 @@ class UiM(QtWidgets.QDialog, FormM):
     @QtCore.pyqtSlot(QtCore.QPoint)
     def on_positionChangedLow(self, pos):
         self.uim.label_2.setText("Режим для слаюовидящих")
+
+    def setLogin(self, login, avatar):
+        self.uim.label.setText(login)
