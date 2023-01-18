@@ -8,6 +8,9 @@ class UiD(QtWidgets.QDialog, FormD):
         super(UiD, self).__init__(parent)
         self.uid = Ui_addForm()
         self.uid.setupUi(self)
+        self.uid.addButton.clicked.connect(self.addButtonPresed)
+
+    def addButtonPresed(self):
 
 """def closeEvent(self, event):
         return 1
