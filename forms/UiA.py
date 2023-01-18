@@ -1,4 +1,5 @@
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from forms.mainForm import Ui_mainForm
 from forms.autoresationForm import Ui_autoresationForm
 from forms.UiM import UiM
 import sqlite3
@@ -6,6 +7,7 @@ import sqlite3
 FormA, WindowA = uic.loadUiType("forms/autoresationForm.ui")
 db = sqlite3.connect('identifier.sqlite')
 sql = db.cursor()
+
 
 def autoresation(login, password):
     for value in sql.execute("SELECT login, password FROM masters"):
