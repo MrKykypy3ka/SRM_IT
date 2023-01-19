@@ -53,7 +53,18 @@ class UiD(QtWidgets.QDialog, FormD):
             self.uid.textEdit.setStyleSheet("QTextEdit {background-color: White;}")
 
     def addOrders(self):
-        sql.
+        id = self.uid.spinBox.value()
+        name = self.uid.lineEdit.text()
+        type_work = self.uid.comboBox.itemText()
+        master = self.uid.comboBox_2.itemText()
+        data_start = self.uid.dateTimeEdit.dateTime()
+        data_end = self.uid.dateTimeEdit_2.dateTime()
+        mark = self.uid.comboBox_3.itemText()
+        price = self.uid.lineEdit_2
+        notes = self.uid.textEdit.text()
+
+        sql.execute(f"INSERT INTO orders VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    ())
 """ def closeEvent(self, event):
         return 1
 
