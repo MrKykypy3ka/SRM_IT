@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>314</width>
-    <height>391</height>
+    <height>418</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -75,7 +75,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>40</y>
      <width>131</width>
      <height>21</height>
     </rect>
@@ -86,7 +86,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Название</string>
+    <string>Заказчик</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -115,7 +115,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>240</y>
+     <y>270</y>
      <width>141</width>
      <height>21</height>
     </rect>
@@ -137,7 +137,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>160</y>
+     <y>240</y>
      <width>131</width>
      <height>21</height>
     </rect>
@@ -148,14 +148,14 @@
     </font>
    </property>
    <property name="text">
-    <string>Дата сдачи</string>
+    <string>Стоимость</string>
    </property>
   </widget>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>340</y>
+     <y>370</y>
      <width>101</width>
      <height>41</height>
     </rect>
@@ -173,7 +173,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>40</y>
+     <y>10</y>
      <width>131</width>
      <height>21</height>
     </rect>
@@ -274,7 +274,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>160</y>
+     <y>240</y>
      <width>151</width>
      <height>21</height>
     </rect>
@@ -300,7 +300,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>240</y>
+     <y>270</y>
      <width>151</width>
      <height>91</height>
     </rect>
@@ -310,6 +310,37 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Дата сдачи</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="date_start_2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>160</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
    </property>
   </widget>
  </widget>

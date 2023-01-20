@@ -4,6 +4,7 @@ from forms.mainForm import Ui_mainForm
 from forms.UiU import UiU
 from forms.UiD import UiD
 from forms.UiV import UiV
+from forms.UiE import UiE
 import sqlite3
 
 
@@ -45,6 +46,7 @@ class UiM(QtWidgets.QDialog, FormM):
         self.addForm = UiD(self)
         self.userForm = UiU(self)
         self.viewForm = UiV(self)
+        self.editForm = UiE(self)
         self.trackerAdd = MouseTracker(self.uim.addButton)
         self.trackerAdd.positionChanged.connect(self.on_positionChangedAdd)
         self.trackerEdit = MouseTracker(self.uim.editButton)
@@ -67,13 +69,17 @@ class UiM(QtWidgets.QDialog, FormM):
         self.addForm.setEnabled(True)
         if not self.addForm.exec_():
             self.setEnabled(True)
+            self.uim.listWidget.clear()
+            self.loadForm()
 
     def editButtonPresed(self):
         self.setEnabled(False)
-        self.addForm.show()
-        self.addForm.setEnabled(True)
-        if not self.addForm.exec_():
+        self.editForm.show()
+        self.editForm.setEnabled(True)
+        if not self.editForm.exec_():
             self.setEnabled(True)
+            self.uim.listWidget.clear()
+            self.loadForm()
 
     def userButtonPresed(self):
         self.setEnabled(False)
@@ -81,6 +87,8 @@ class UiM(QtWidgets.QDialog, FormM):
         self.userForm.setEnabled(True)
         if not self.userForm.exec_():
             self.setEnabled(True)
+            self.uim.listWidget.clear()
+            self.loadForm()
 
     def viewButtonPresed(self):
         self.setEnabled(False)
@@ -88,6 +96,8 @@ class UiM(QtWidgets.QDialog, FormM):
         self.viewForm.setEnabled(True)
         if not self.viewForm.exec_():
             self.setEnabled(True)
+            self.uim.listWidget.clear()
+            self.loadForm()
 
     def infoButtonPresed(self):
         file = open("info.txt", "r", encoding="utf-8")
