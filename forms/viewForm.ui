@@ -205,7 +205,7 @@
     <string>Вид работы</string>
    </property>
   </widget>
-  <widget class="QLabel" name="id">
+  <widget class="QLabel" name="customer">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -270,7 +270,7 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QLabel" name="date_end">
+  <widget class="QLabel" name="price">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -280,7 +280,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>price</string>
    </property>
   </widget>
   <widget class="QLabel" name="mark">
@@ -330,7 +330,7 @@
     <string>Дата сдачи</string>
    </property>
   </widget>
-  <widget class="QLabel" name="date_start_2">
+  <widget class="QLabel" name="date_end">
    <property name="geometry">
     <rect>
      <x>150</x>

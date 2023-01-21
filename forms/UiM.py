@@ -38,6 +38,7 @@ class UiM(QtWidgets.QDialog, FormM):
         self.uim = Ui_mainForm()
         self.uim.setupUi(self)
         self.uim.addButton.clicked.connect(self.addButtonPresed)
+        self.uim.deleteButton.clicked.connect(self.deleteButtonPresed)
         self.uim.editButton.clicked.connect(self.editButtonPresed)
         self.uim.usersButton.clicked.connect(self.userButtonPresed)
         self.uim.vievButton.clicked.connect(self.viewButtonPresed)
@@ -73,13 +74,36 @@ class UiM(QtWidgets.QDialog, FormM):
             self.loadForm()
 
     def editButtonPresed(self):
-        self.setEnabled(False)
-        self.editForm.show()
-        self.editForm.setEnabled(True)
-        if not self.editForm.exec_():
-            self.setEnabled(True)
-            self.uim.listWidget.clear()
-            self.loadForm()
+        if self.uim.listWidget.selectedItems():
+            self.setEnabled(False)
+            self.editForm.show()
+            self.editForm.setEnabled(True)
+            if not self.editForm.exec_():
+                self.setEnabled(True)
+                self.uim.listWidget.clear()
+                self.loadForm()
+
+    def deleteButtonPresed(self):
+        if self.uim.listWidget.selectedItems():
+            msg = QMessageBox(self)
+            msg.setWindowTitle("Подтвердите удаление")
+            msg.setText("Вы точно хотите удалить запись?")
+            msg.setIcon(QMessageBox.Question)
+            msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            msg.setInformativeText(self.uim.listWidget.selectedItems()[0].text())
+            x = msg.exec_()
+            print(x)
+            if x == 16384:
+                try:
+                    request = """DELETE FROM orders
+                                 WHERE notes == (?);"""
+                    sql.execute(request, (self.uim.listWidget.selectedItems()[0].text(),))
+                    db.commit()
+                except sqlite3.Error as error:
+                    print("Ошибка при работе с SQLite", error)
+        self.loadForm()
+
+
 
     def userButtonPresed(self):
         self.setEnabled(False)
@@ -87,17 +111,18 @@ class UiM(QtWidgets.QDialog, FormM):
         self.userForm.setEnabled(True)
         if not self.userForm.exec_():
             self.setEnabled(True)
-            self.uim.listWidget.clear()
             self.loadForm()
 
     def viewButtonPresed(self):
-        self.setEnabled(False)
-        self.viewForm.show()
-        self.viewForm.setEnabled(True)
-        if not self.viewForm.exec_():
-            self.setEnabled(True)
-            self.uim.listWidget.clear()
-            self.loadForm()
+        if self.uim.listWidget.selectedItems():
+            self.setEnabled(False)
+            self.viewForm.setData(self.uim.listWidget.selectedItems()[0].text())
+            self.viewForm.show()
+            self.viewForm.setEnabled(True)
+            if not self.viewForm.exec_():
+                self.setEnabled(True)
+                self.uim.listWidget.clear()
+                self.loadForm()
 
     def infoButtonPresed(self):
         file = open("info.txt", "r", encoding="utf-8")
@@ -111,6 +136,7 @@ class UiM(QtWidgets.QDialog, FormM):
         result = QMessageBox.question(self, "TODO", "Режим для слабовидящих", QMessageBox.Close, defaultBtn)
 
     def loadForm(self):
+        self.uim.listWidget.clear()
         for value in sql.execute("SELECT notes FROM orders"):
             self.uim.listWidget.addItems(value)
 
@@ -144,3 +170,4 @@ class UiM(QtWidgets.QDialog, FormM):
 
     def setLogin(self, login, avatar):
         self.uim.label.setText(login)
+
