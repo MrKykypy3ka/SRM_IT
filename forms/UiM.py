@@ -76,6 +76,7 @@ class UiM(QtWidgets.QDialog, FormM):
     def editButtonPresed(self):
         if self.uim.listWidget.selectedItems():
             self.setEnabled(False)
+            self.editForm.setData(self.uim.listWidget.selectedItems()[0].text())
             self.editForm.show()
             self.editForm.setEnabled(True)
             if not self.editForm.exec_():

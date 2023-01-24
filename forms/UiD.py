@@ -71,20 +71,24 @@ class UiD(QtWidgets.QDialog, FormD):
     def addOrders(self):
         id = self.uid.spinBox.value()
         customer = self.uid.lineEdit_3.text()
-        data_start = self.uid.dateTimeEdit.dateTime().toString()
-        data_end = self.uid.dateTimeEdit_2.dateTime().toString()
+        data_start = self.uid.dateTimeEdit.dateTime().toString('yyyy MM dd hh mm')
+        print(data_start)
+        data_end = self.uid.dateTimeEdit_2.dateTime().toString('yyyy MM dd hh mm')
         price = self.uid.lineEdit_2.text()
         notes = self.uid.textEdit.toPlainText()
         try:
             request = """SELECT type_of_work_id FROM type_of_work
                                              WHERE name == (?);"""
             type_work = self.sql.execute(request, (self.uid.comboBox.currentText(),)).fetchone()[0]
+            print(1)
             request = """SELECT masters_id FROM masters
                                              WHERE last_name == (?);"""
             master = self.sql.execute(request, (self.uid.comboBox_2.currentText(),)).fetchone()[0]
+            print(2)
             request = """SELECT completion_mark_id FROM completion_mark
                                              WHERE name == (?);"""
             mark = self.sql.execute(request, (self.uid.comboBox_3.currentText(),)).fetchone()[0]
+            print(3)
             sqlite_insert_query = """INSERT INTO orders
                                       (order_id, customer, type_of_work_id, master_id, date_start, date_end, completion_mark_id, price, notes)
                                       VALUES
