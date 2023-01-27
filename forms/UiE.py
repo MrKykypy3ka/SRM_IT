@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import QDateTime
 from forms.editForm import Ui_editForm
-import sys
 import sqlite3
 
 FormE, WindowD = uic.loadUiType("forms/editForm.ui")
@@ -13,6 +12,7 @@ class UiE(QtWidgets.QDialog, FormE):
         self.uie = Ui_editForm()
         self.uie.setupUi(self)
         self.uie.spinBox.setEnabled(False)
+        self.setFixedSize(self.width(), self.height())
         self.uie.addButton.clicked.connect(self.addButtonPresed)
         self.uie.textEdit.textChanged.connect(self.textTextChanged)
         self.uie.lineEdit_2.textChanged.connect(self.line2TextChanged)
@@ -49,7 +49,9 @@ class UiE(QtWidgets.QDialog, FormE):
         self.uie.comboBox.setCurrentText(str(self.order[2]))
         self.uie.comboBox_2.setCurrentText(str(self.order[3]))
         self.uie.dateTimeEdit.setDateTime(QDateTime(*map(int, self.order[4].split(' '))))
+        self.uie.dateTimeEdit.setDisplayFormat("dd.MM.yyyy (hh:mm)")
         self.uie.dateTimeEdit_2.setDateTime(QDateTime(*map(int, self.order[5].split(' '))))
+        self.uie.dateTimeEdit_2.setDisplayFormat("dd.MM.yyyy (hh:mm)")
         self.uie.comboBox_3.setCurrentText(str(self.order[6]))
         self.uie.lineEdit_2.setText(str(self.order[7]))
         self.uie.textEdit.setPlainText(self.order[8])
@@ -91,11 +93,8 @@ class UiE(QtWidgets.QDialog, FormE):
                                                      WHERE name == (?);"""
             mark = self.sql.execute(request, (self.uie.comboBox_3.currentText(),)).fetchone()[0]
             sqlite_insert_query = """UPDATE orders SET customer = ?, type_of_work_id = ?, master_id = ?, date_start = ?, date_end = ?, completion_mark_id = ?, price = ?, notes = ? WHERE order_id = ?;"""
-            print(1)
             data = (customer, type_work, master, data_start, data_end, mark, price, notes, id)
-            print(data)
             self.sql.execute(sqlite_insert_query, data)
-            print(2)
             self.db.commit()
         except sqlite3.Error as error:
             print("Ошибка при работе с SQLite", error)
@@ -105,7 +104,6 @@ class UiE(QtWidgets.QDialog, FormE):
         self.uie.comboBox_2.clear()
         self.uie.comboBox_3.clear()
         try:
-            print(1)
             sqlite_insert_query = """SELECT * FROM orders
                                                  WHERE notes == (?);"""
             self.order = list(self.sql.execute(sqlite_insert_query, (self.notes,)).fetchone())

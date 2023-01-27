@@ -1,7 +1,5 @@
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
-from PyQt5.QtCore import QDateTime
+from PyQt5 import QtCore, QtWidgets, uic
 from forms.addForm import Ui_addForm
-import sys
 import sqlite3
 
 FormD, WindowD = uic.loadUiType("forms/addForm.ui")
@@ -13,6 +11,7 @@ class UiD(QtWidgets.QDialog, FormD):
         self.uid = Ui_addForm()
         self.uid.setupUi(self)
         self.uid.spinBox.setEnabled(False)
+        self.setFixedSize(self.width(), self.height())
         self.uid.addButton.clicked.connect(self.addButtonPresed)
         self.uid.textEdit.textChanged.connect(self.textTextChanged)
         self.uid.lineEdit_2.textChanged.connect(self.line2TextChanged)
@@ -90,15 +89,12 @@ class UiD(QtWidgets.QDialog, FormD):
             request = """SELECT type_of_work_id FROM type_of_work
                                              WHERE name == (?);"""
             type_work = self.sql.execute(request, (self.uid.comboBox.currentText(),)).fetchone()[0]
-            print(1)
             request = """SELECT masters_id FROM masters
                                              WHERE last_name == (?);"""
             master = self.sql.execute(request, (self.uid.comboBox_2.currentText(),)).fetchone()[0]
-            print(2)
             request = """SELECT completion_mark_id FROM completion_mark
                                              WHERE name == (?);"""
             mark = self.sql.execute(request, (self.uid.comboBox_3.currentText(),)).fetchone()[0]
-            print(3)
             sqlite_insert_query = """INSERT INTO orders
                                       (order_id, customer, type_of_work_id, master_id, date_start, date_end, completion_mark_id, price, notes)
                                       VALUES

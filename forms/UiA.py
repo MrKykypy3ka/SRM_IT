@@ -1,5 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
-from forms.mainForm import Ui_mainForm
+from PyQt5 import QtWidgets, QtCore, uic
 from forms.autoresationForm import Ui_autoresationForm
 from forms.UiM import UiM
 import sqlite3
@@ -25,9 +24,12 @@ class UiA(QtWidgets.QDialog, FormA):
         self.uia.setupUi(self)
         self.uia.singinButton.clicked.connect(self.singinButtonPresed)
         self.uim = UiM(self)
+        self.setFixedSize(self.width(), self.height())
+        self.setWindowFlags(QtCore.Qt.WindowCloseButtonHint)
 
     def singinButtonPresed(self):
         #if autoresation(self.uia.inputLogin.text(), self.uia.inputPassword.text()):
-        self.close()
-        self.uim.show()
-        self.uim.setLogin(self.uia.inputLogin.text(), "1")
+        if True:
+            self.close()
+            self.uim.show()
+            self.uim.setLogin(self.uia.inputLogin.text(), "1")

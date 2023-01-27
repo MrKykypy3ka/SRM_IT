@@ -37,6 +37,7 @@ class UiM(QtWidgets.QDialog, FormM):
         super(UiM, self).__init__(parent)
         self.uim = Ui_mainForm()
         self.uim.setupUi(self)
+        self.setFixedSize(self.width(), self.height())
         self.uim.addButton.clicked.connect(self.addButtonPresed)
         self.uim.deleteButton.clicked.connect(self.deleteButtonPresed)
         self.uim.editButton.clicked.connect(self.editButtonPresed)
