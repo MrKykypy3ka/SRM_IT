@@ -79,6 +79,7 @@ class UiM(QtWidgets.QDialog, FormM):
             self.editForm.setData(self.uim.listWidget.selectedItems()[0].text())
             self.editForm.show()
             self.editForm.setEnabled(True)
+
             if not self.editForm.exec_():
                 self.setEnabled(True)
                 self.uim.listWidget.clear()

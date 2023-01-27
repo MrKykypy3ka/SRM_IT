@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from PyQt5.QtCore import QDateTime
 from forms.addForm import Ui_addForm
 import sys
 import sqlite3
@@ -31,23 +32,32 @@ class UiD(QtWidgets.QDialog, FormD):
             self.close()
 
     def loadForm(self):
-        self.uid.spinBox.setValue(self.sql.execute("SELECT MAX(order_id) FROM orders").fetchone()[0] + 1)
         self.uid.dateTimeEdit.setDateTime(QtCore.QDateTime.currentDateTime())
         self.uid.dateTimeEdit.setDisplayFormat("dd.MM.yyyy (hh:mm)")
         self.uid.dateTimeEdit_2.setDateTime(QtCore.QDateTime.currentDateTime())
         self.uid.dateTimeEdit_2.setDisplayFormat("dd.MM.yyyy (hh:mm)")
-        for value in self.sql.execute("SELECT name FROM type_of_work"):
-            self.uid.comboBox.addItem(value[0])
-        for value in self.sql.execute("SELECT last_name FROM masters"):
-            self.uid.comboBox_2.addItem(value[0])
-        for value in self.sql.execute("SELECT name FROM completion_mark"):
-            self.uid.comboBox_3.addItem(value[0])
+        try:
+            if self.sql.execute("SELECT MAX(order_id) FROM orders").fetchone()[0] is None:
+                self.uid.spinBox.setValue(1)
+            else:
+                self.uid.spinBox.setValue(self.sql.execute("SELECT MAX(order_id) FROM orders").fetchone()[0] + 1)
+            for value in self.sql.execute("SELECT name FROM type_of_work"):
+                self.uid.comboBox.addItem(value[0])
+            for value in self.sql.execute("SELECT last_name FROM masters"):
+                self.uid.comboBox_2.addItem(value[0])
+            for value in self.sql.execute("SELECT name FROM completion_mark"):
+                self.uid.comboBox_3.addItem(value[0])
+        except sqlite3.Error as error:
+            print("Ошибка при работе с SQLite", error)
         self.uid.lineEdit_3.setText("")
         self.uid.lineEdit_2.setText("")
         self.uid.textEdit.setText("")
         self.uid.textEdit.setStyleSheet("QTextEdit {background-color: White;}")
 
     def showEvent(self, event):
+        self.uid.comboBox.clear()
+        self.uid.comboBox_2.clear()
+        self.uid.comboBox_3.clear()
         self.loadForm()
 
     def textTextChanged(self):

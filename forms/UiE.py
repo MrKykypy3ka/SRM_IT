@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import QDateTime
-
 from forms.editForm import Ui_editForm
 import sys
 import sqlite3
@@ -102,7 +101,11 @@ class UiE(QtWidgets.QDialog, FormE):
             print("Ошибка при работе с SQLite", error)
 
     def showEvent(self, a0: QtGui.QShowEvent) -> None:
+        self.uie.comboBox.clear()
+        self.uie.comboBox_2.clear()
+        self.uie.comboBox_3.clear()
         try:
+            print(1)
             sqlite_insert_query = """SELECT * FROM orders
                                                  WHERE notes == (?);"""
             self.order = list(self.sql.execute(sqlite_insert_query, (self.notes,)).fetchone())
