@@ -98,8 +98,7 @@ class UiM(QtWidgets.QDialog, FormM):
             print(x)
             if x == 16384:
                 try:
-                    request = """DELETE FROM orders
-                                 WHERE notes == (?);"""
+                    request = """DELETE FROM orders WHERE notes == (?);"""
                     sql.execute(request, (self.uim.listWidget.selectedItems()[0].text(),))
                     db.commit()
                 except sqlite3.Error as error:
@@ -149,7 +148,7 @@ class UiM(QtWidgets.QDialog, FormM):
 
     @QtCore.pyqtSlot(QtCore.QPoint)
     def on_positionChangedEdit(self, pos):
-        self.uim.label_2.setText("Редактирвоать запить")
+        self.uim.label_2.setText("Редактировать запить")
 
     @QtCore.pyqtSlot(QtCore.QPoint)
     def on_positionChangedDel(self, pos):
@@ -169,7 +168,7 @@ class UiM(QtWidgets.QDialog, FormM):
 
     @QtCore.pyqtSlot(QtCore.QPoint)
     def on_positionChangedLow(self, pos):
-        self.uim.label_2.setText("Режим для слаюовидящих")
+        self.uim.label_2.setText("Режим для слабовидящих")
 
     def setLogin(self, login, avatar):
         self.uim.label.setText(login)
