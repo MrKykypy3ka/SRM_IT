@@ -15,6 +15,7 @@ class UiA(QtWidgets.QDialog, FormA):
         self.uim = UiM(self)
         self.setFixedSize(self.width(), self.height())
         self.setWindowFlags(QtCore.Qt.WindowCloseButtonHint)
+        self.uia.inputPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.db = sqlite3.connect('identifier.sqlite')
         self.sql = self.db.cursor()
 
@@ -25,8 +26,10 @@ class UiA(QtWidgets.QDialog, FormA):
         return False
 
     def singinButtonPresed(self):
-        #if autoresation(self.uia.inputLogin.text(), self.uia.inputPassword.text()):
-        if True:
+        if self.autoresation(self.uia.inputLogin.text(), self.uia.inputPassword.text()):
             self.close()
             self.uim.show()
             self.uim.setLogin(self.uia.inputLogin.text(), "1")
+        else:
+            self.uia.inputLogin.setStyleSheet("QLineEdit {background-color: Salmon;}")
+            self.uia.inputPassword.setStyleSheet("QLineEdit {background-color: Salmon;}")
