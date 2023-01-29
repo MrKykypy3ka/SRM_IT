@@ -6,7 +6,7 @@
     <file>user.png</file>
     <file>view.png</file>
     <file>low.png</file>
-    <file>info.png</file>
+    <file>info.png</file>	
     <file>computer.ico</file>	
   </qresource>
 </RCC>
