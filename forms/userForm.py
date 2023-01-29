@@ -15,6 +15,9 @@ class Ui_usersForm(object):
     def setupUi(self, usersForm):
         usersForm.setObjectName("usersForm")
         usersForm.resize(322, 250)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/computer.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        usersForm.setWindowIcon(icon)
         self.comboBox_2 = QtWidgets.QComboBox(usersForm)
         self.comboBox_2.setGeometry(QtCore.QRect(150, 70, 161, 22))
         self.comboBox_2.setObjectName("comboBox_2")
@@ -100,6 +103,7 @@ class Ui_usersForm(object):
         self.label_5.setText(_translate("usersForm", "Пароль"))
         self.label_9.setText(_translate("usersForm", "Фамилия"))
         self.label.setText(_translate("usersForm", "Имя"))
+import image_rc
 
 
 if __name__ == "__main__":

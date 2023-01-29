@@ -15,6 +15,9 @@ class Ui_editForm(object):
     def setupUi(self, editForm):
         editForm.setObjectName("editForm")
         editForm.resize(320, 420)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/computer.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        editForm.setWindowIcon(icon)
         self.addButton = QtWidgets.QPushButton(editForm)
         self.addButton.setGeometry(QtCore.QRect(100, 370, 101, 41))
         font = QtGui.QFont()
@@ -132,6 +135,7 @@ class Ui_editForm(object):
         self.label_8.setText(_translate("editForm", "<html><head/><body><p>Примечания</p></body></html>"))
         self.label_10.setText(_translate("editForm", "Стоимость"))
         self.label_11.setText(_translate("editForm", "Заказчик"))
+import image_rc
 
 
 if __name__ == "__main__":

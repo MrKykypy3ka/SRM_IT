@@ -14,8 +14,8 @@
    <string>Техник</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../computer.ico</normaloff>../computer.ico</iconset>
+   <iconset resource="../image/image.qrc">
+    <normaloff>:/icons/computer.ico</normaloff>:/icons/computer.ico</iconset>
   </property>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">

@@ -15,6 +15,9 @@ class Ui_addForm(object):
     def setupUi(self, addForm):
         addForm.setObjectName("addForm")
         addForm.resize(320, 420)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/computer.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        addForm.setWindowIcon(icon)
         self.addButton = QtWidgets.QPushButton(addForm)
         self.addButton.setGeometry(QtCore.QRect(100, 370, 101, 41))
         font = QtGui.QFont()
@@ -132,6 +135,7 @@ class Ui_addForm(object):
         self.label_8.setText(_translate("addForm", "<html><head/><body><p>Примечания</p></body></html>"))
         self.label_10.setText(_translate("addForm", "Стоимость"))
         self.label_11.setText(_translate("addForm", "Заказчик"))
+import image_rc
 
 
 if __name__ == "__main__":

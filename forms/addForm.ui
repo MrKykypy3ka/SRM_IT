@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Добавить запись</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../image/image.qrc">
+    <normaloff>:/icons/computer.ico</normaloff>:/icons/computer.ico</iconset>
+  </property>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
@@ -314,6 +318,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../image/image.qrc"/>
+ </resources>
  <connections/>
 </ui>

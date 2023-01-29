@@ -15,6 +15,9 @@ class Ui_viewForm(object):
     def setupUi(self, viewForm):
         viewForm.setObjectName("viewForm")
         viewForm.resize(314, 418)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/computer.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        viewForm.setWindowIcon(icon)
         self.label_6 = QtWidgets.QLabel(viewForm)
         self.label_6.setGeometry(QtCore.QRect(10, 190, 141, 21))
         font = QtGui.QFont()
@@ -142,6 +145,7 @@ class Ui_viewForm(object):
         self.notes.setText(_translate("viewForm", "TextLabel"))
         self.label_10.setText(_translate("viewForm", "Дата сдачи"))
         self.date_end.setText(_translate("viewForm", "TextLabel"))
+import image_rc
 
 
 if __name__ == "__main__":

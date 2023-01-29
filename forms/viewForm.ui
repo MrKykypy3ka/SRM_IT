@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Просмотр</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../image/image.qrc">
+    <normaloff>:/icons/computer.ico</normaloff>:/icons/computer.ico</iconset>
+  </property>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
@@ -344,6 +348,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../image/image.qrc"/>
+ </resources>
  <connections/>
 </ui>
