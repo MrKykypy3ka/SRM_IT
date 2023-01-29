@@ -78,7 +78,7 @@ class UiD(QtWidgets.QDialog, FormD):
             self.uid.lineEdit_3.setStyleSheet("QLineEdit {background-color: White;}")
 
     def addOrders(self):
-        id = self.uid.spinBox.value()
+        o_id = self.uid.spinBox.value()
         customer = self.uid.lineEdit_3.text()
         data_start = self.uid.dateTimeEdit.dateTime().toString('yyyy MM dd hh mm')
         print(data_start)
@@ -96,10 +96,10 @@ class UiD(QtWidgets.QDialog, FormD):
                                              WHERE name == (?);"""
             mark = self.sql.execute(request, (self.uid.comboBox_3.currentText(),)).fetchone()[0]
             sqlite_insert_query = """INSERT INTO orders
-                                      (order_id, customer, type_of_work_id, master_id, date_start, date_end, completion_mark_id, price, notes)
+            (order_id, customer, type_of_work_id, master_id, date_start, date_end, completion_mark_id, price, notes)
                                       VALUES
                                       (?, ?, ?, ?, ?, ?, ?, ?, ?);"""
-            data = (id, customer, type_work, master, data_start, data_end, mark, price, notes)
+            data = (o_id, customer, type_work, master, data_start, data_end, mark, price, notes)
             self.sql.execute(sqlite_insert_query, data)
             self.db.commit()
         except sqlite3.Error as error:

@@ -54,16 +54,16 @@ class UiU(QtWidgets.QDialog, FormU):
         password = self.uiu.lineEdit_5.text()
         try:
             if self.sql.execute("SELECT MAX(masters_id) FROM masters").fetchone()[0] is None:
-                id = 1
+                u_id = 1
             else:
-                id = self.sql.execute("SELECT MAX(masters_id) FROM masters").fetchone()[0] + 1
+                u_id = self.sql.execute("SELECT MAX(masters_id) FROM masters").fetchone()[0] + 1
             request = "SELECT post_id FROM post WHERE name == (?);"
             post = self.sql.execute(request, (self.uiu.comboBox_2.currentText(),)).fetchone()[0]
             sqlite_insert_query = """INSERT INTO masters
                                       (masters_id, first_name, last_name, post_id, login, password)
                                       VALUES
                                       (?, ?, ?, ?, ?, ?);"""
-            data = (id, first_name, last_name, post, login, password)
+            data = (u_id, first_name, last_name, post, login, password)
             self.sql.execute(sqlite_insert_query, data)
             self.db.commit()
         except sqlite3.Error as error:

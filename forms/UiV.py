@@ -10,6 +10,8 @@ sql = db.cursor()
 class UiV(QtWidgets.QDialog, FormV):
     def __init__(self, parent=None):
         super(UiV, self).__init__(parent)
+        self.notes = None
+        self.order = None
         self.uiv = Ui_viewForm()
         self.uiv.setupUi(self)
         self.setFixedSize(self.width(), self.height())
