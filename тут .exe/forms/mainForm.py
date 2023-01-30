@@ -53,7 +53,7 @@ class Ui_mainForm(object):
         self.label_2 = QtWidgets.QLabel(mainForm)
         self.label_2.setGeometry(QtCore.QRect(10, 310, 491, 31))
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(11)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.infoButton = QtWidgets.QPushButton(mainForm)

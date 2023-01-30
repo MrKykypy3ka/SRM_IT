@@ -130,12 +130,12 @@ class UiM(QtWidgets.QDialog, FormM):
         file = open("info.txt", "r", encoding="utf-8")
         s = file.read()
         defaultBtn = QMessageBox.NoButton
-        result = QMessageBox.question(self, "Руководство пользователя", s, QMessageBox.Close, defaultBtn)
+        QMessageBox.question(self, "Руководство пользователя", s, QMessageBox.Close, defaultBtn)
         file.close()
 
     def blitButtonPresed(self):
         defaultBtn = QMessageBox.NoButton
-        result = QMessageBox.question(self, "TODO", "Режим для слабовидящих", QMessageBox.Close, defaultBtn)
+        QMessageBox.question(self, "TODO", "Режим для слабовидящих", QMessageBox.Close, defaultBtn)
 
     def loadForm(self):
         self.uim.listWidget.clear()
@@ -143,33 +143,32 @@ class UiM(QtWidgets.QDialog, FormM):
             self.uim.listWidget.addItems(value)
 
     @QtCore.pyqtSlot(QtCore.QPoint)
-    def on_positionChangedAdd(self, pos):
+    def on_positionChangedAdd(self):
         self.uim.label_2.setText("Добавить запись")
 
     @QtCore.pyqtSlot(QtCore.QPoint)
-    def on_positionChangedEdit(self, pos):
+    def on_positionChangedEdit(self):
         self.uim.label_2.setText("Редактировать запить")
 
     @QtCore.pyqtSlot(QtCore.QPoint)
-    def on_positionChangedDel(self, pos):
+    def on_positionChangedDel(self):
         self.uim.label_2.setText("Удалить запить")
 
     @QtCore.pyqtSlot(QtCore.QPoint)
-    def on_positionChangedView(self, pos):
+    def on_positionChangedView(self):
         self.uim.label_2.setText("Просмотреть запись")
 
     @QtCore.pyqtSlot(QtCore.QPoint)
-    def on_positionChangedUser(self, pos):
+    def on_positionChangedUser(self):
         self.uim.label_2.setText("Добавить пользователя")
 
     @QtCore.pyqtSlot(QtCore.QPoint)
-    def on_positionChangedInfo(self, pos):
+    def on_positionChangedInfo(self):
         self.uim.label_2.setText("Руководство пользователя")
 
     @QtCore.pyqtSlot(QtCore.QPoint)
-    def on_positionChangedLow(self, pos):
+    def on_positionChangedLow(self):
         self.uim.label_2.setText("Режим для слабовидящих")
 
     def setLogin(self, login, avatar):
         self.uim.label.setText(login)
-

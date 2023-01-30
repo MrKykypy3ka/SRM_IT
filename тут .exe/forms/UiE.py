@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from PyQt5 import QtGui, QtWidgets, uic
 from PyQt5.QtCore import QDateTime
 from forms.editForm import Ui_editForm
 import sqlite3
@@ -9,6 +9,8 @@ FormE, WindowD = uic.loadUiType("forms/editForm.ui")
 class UiE(QtWidgets.QDialog, FormE):
     def __init__(self, parent=None):
         super(UiE, self).__init__(parent)
+        self.notes = None
+        self.order = None
         self.uie = Ui_editForm()
         self.uie.setupUi(self)
         self.uie.spinBox.setEnabled(False)
@@ -75,7 +77,7 @@ class UiE(QtWidgets.QDialog, FormE):
             self.uie.lineEdit_3.setStyleSheet("QLineEdit {background-color: White;}")
 
     def editOrders(self):
-        id = self.uie.spinBox.value()
+        o_id = self.uie.spinBox.value()
         customer = self.uie.lineEdit_3.text()
         data_start = self.uie.dateTimeEdit.dateTime().toString('yyyy MM dd hh mm')
         data_end = self.uie.dateTimeEdit_2.dateTime().toString('yyyy MM dd hh mm')
@@ -83,17 +85,16 @@ class UiE(QtWidgets.QDialog, FormE):
         notes = self.uie.textEdit.toPlainText()
 
         try:
-            request = """SELECT type_of_work_id FROM type_of_work
-                                                     WHERE name == (?);"""
+            request = """SELECT type_of_work_id FROM type_of_work WHERE name == (?);"""
             type_work = self.sql.execute(request, (self.uie.comboBox.currentText(),)).fetchone()[0]
-            request = """SELECT masters_id FROM masters
-                                                     WHERE last_name == (?);"""
+            request = """SELECT masters_id FROM masters WHERE last_name == (?);"""
             master = self.sql.execute(request, (self.uie.comboBox_2.currentText(),)).fetchone()[0]
-            request = """SELECT completion_mark_id FROM completion_mark
-                                                     WHERE name == (?);"""
+            request = """SELECT completion_mark_id FROM completion_mark WHERE name == (?);"""
             mark = self.sql.execute(request, (self.uie.comboBox_3.currentText(),)).fetchone()[0]
-            sqlite_insert_query = """UPDATE orders SET customer = ?, type_of_work_id = ?, master_id = ?, date_start = ?, date_end = ?, completion_mark_id = ?, price = ?, notes = ? WHERE order_id = ?;"""
-            data = (customer, type_work, master, data_start, data_end, mark, price, notes, id)
+            sqlite_insert_query = """UPDATE orders 
+            SET customer = ?, type_of_work_id = ?, master_id = ?, date_start = ?,
+            date_end = ?, completion_mark_id = ?, price = ?, notes = ? WHERE order_id = ?;"""
+            data = (customer, type_work, master, data_start, data_end, mark, price, notes, o_id)
             self.sql.execute(sqlite_insert_query, data)
             self.db.commit()
         except sqlite3.Error as error:
@@ -104,17 +105,13 @@ class UiE(QtWidgets.QDialog, FormE):
         self.uie.comboBox_2.clear()
         self.uie.comboBox_3.clear()
         try:
-            sqlite_insert_query = """SELECT * FROM orders
-                                                 WHERE notes == (?);"""
+            sqlite_insert_query = """SELECT * FROM orders WHERE notes == (?);"""
             self.order = list(self.sql.execute(sqlite_insert_query, (self.notes,)).fetchone())
-            request = """SELECT name FROM type_of_work
-                                                         WHERE type_of_work_id == (?);"""
+            request = """SELECT name FROM type_of_work WHERE type_of_work_id == (?);"""
             self.order[2] = self.sql.execute(request, (self.order[2],)).fetchone()[0]
-            request = """SELECT last_name FROM masters
-                                                         WHERE masters_id == (?);"""
+            request = """SELECT last_name FROM masters WHERE masters_id == (?);"""
             self.order[3] = self.sql.execute(request, (self.order[3],)).fetchone()[0]
-            request = """SELECT name FROM completion_mark
-                                                         WHERE completion_mark_id == (?);"""
+            request = """SELECT name FROM completion_mark WHERE completion_mark_id == (?);"""
             self.order[6] = self.sql.execute(request, (self.order[6],)).fetchone()[0]
             self.loadForm()
             self.showData()
