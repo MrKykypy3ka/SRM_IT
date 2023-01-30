@@ -18,6 +18,7 @@ class UiV(QtWidgets.QDialog, FormV):
 
     def closeEvent(self, event):
         print("view")
+
         event.accept()
 
     def showEvent(self, a0: QtGui.QShowEvent) -> None:

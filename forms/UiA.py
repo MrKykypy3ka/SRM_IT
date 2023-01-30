@@ -30,6 +30,7 @@ class UiA(QtWidgets.QDialog, FormA):
             self.close()
             self.uim.show()
             self.uim.setLogin(self.uia.inputLogin.text(), "1")
+            self.db.close()
         else:
             self.uia.inputLogin.setStyleSheet("QLineEdit {background-color: Salmon;}")
             self.uia.inputPassword.setStyleSheet("QLineEdit {background-color: Salmon;}")

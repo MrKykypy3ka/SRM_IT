@@ -31,6 +31,7 @@ class UiE(QtWidgets.QDialog, FormE):
             self.uie.lineEdit_2.setStyleSheet("QLineEdit {background-color: Salmon;}")
         else:
             self.editOrders()
+
             self.close()
 
     def loadForm(self):

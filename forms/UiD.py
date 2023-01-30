@@ -81,7 +81,6 @@ class UiD(QtWidgets.QDialog, FormD):
         o_id = self.uid.spinBox.value()
         customer = self.uid.lineEdit_3.text()
         data_start = self.uid.dateTimeEdit.dateTime().toString('yyyy MM dd hh mm')
-        print(data_start)
         data_end = self.uid.dateTimeEdit_2.dateTime().toString('yyyy MM dd hh mm')
         price = self.uid.lineEdit_2.text()
         notes = self.uid.textEdit.toPlainText()
