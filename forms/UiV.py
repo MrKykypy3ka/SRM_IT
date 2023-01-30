@@ -15,6 +15,7 @@ class UiV(QtWidgets.QDialog, FormV):
         self.uiv = Ui_viewForm()
         self.uiv.setupUi(self)
         self.setFixedSize(self.width(), self.height())
+        self.uiv.addButton.clicked.connect(self.addButtonPresed)
 
     def closeEvent(self, event):
         print("view")
@@ -50,3 +51,6 @@ class UiV(QtWidgets.QDialog, FormV):
         self.uiv.mark.setText(str(self.order[6]))
         self.uiv.price.setText(str(self.order[7]))
         self.uiv.notes.setText(str(self.order[8]))
+
+    def addButtonPresed(self):
+        self.close()
